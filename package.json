@@ -2,9 +2,10 @@
   "name": "cicero-google-voice-action",
   "version": "0.1.0",
   "description": "Cicero Legislators Google Voice Action",
+  "private": "true",
   "main": "index.js",
   "dependencies": {
-    "apiai": "^4.0.3"
+    "actions-on-google": "^1.2.0"
   },
   "devDependencies": {
     "serverless-offline": "^3.15.3"
