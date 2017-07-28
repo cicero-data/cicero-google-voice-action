@@ -46,9 +46,9 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
+package:
+  include:
+    - lambda/**
 #    - include-me-dir/**
 #  exclude:
 #    - exclude-me.js
@@ -56,7 +56,7 @@ provider:
 
 functions:
   ciceroGoogleVoice:
-    handler: index.handler
+    handler: lambda/index.handler
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
