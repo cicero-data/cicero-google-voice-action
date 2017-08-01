@@ -4,7 +4,9 @@ exports.handler = (event, context, callback) => {
     process.env.DEBUG = 'actions-on-google:*';
     const AssistantRequest = require('./assistant-request');
     const AssistantResponse = require('./assistant-response');
+    const CICERO_API_KEY = require('./constants');
     const ApiAiApp = require('actions-on-google').ApiAiApp;
+    const request = require('request');
 
     // API.AI actions
     const FIND_REPRESENTATIVES_ACTION = 'find_representatives';
@@ -27,6 +29,50 @@ exports.handler = (event, context, callback) => {
         context.succeed(responseObj);
     }
 
+    function queryCicero(lat, lon) {
+        // query Cicero for officials representing a given location
+        console.log('query Cicero...');
+        var ciceroApiKey = CICERO_API_KEY;
+        var url = ['https://staging.cicero.azavea.com/v3.1/official?lat=',
+                   lat,
+                   '&lon=',
+                   lon,
+                   '&key=',
+                   ciceroApiKey].join('');
+
+        request(url, function(error, response, body) {
+            if (error) {
+                console.error(error);
+                return;
+            }
+            if (response && response.statusCode) {
+                console.log('status: ' + response.statusCode);
+                if (response.statusCode != 200) {
+                    return;
+                }
+            } else {
+                console.error('no status code on response');
+                return;
+            }
+
+            body = JSON.parse(body);
+
+            if (!body || !body.response || !body.response.results || !body.response.results.officials) {
+                console.error('response has unexpected results');
+                console.error(body);
+                return;
+            }
+
+            let officials = body.response.results.officials;
+            if (officials.length === 0) {
+                console.log('no officials found');
+                return;
+            }
+
+            console.log('found officials! : ' + officials.length);
+        });
+    }
+
     function requestLocationPermission(app) {
         console.log('request permission');
         let permission = app.SupportedPermissions.DEVICE_PRECISE_LOCATION;
@@ -40,6 +86,7 @@ exports.handler = (event, context, callback) => {
             let permission = app.data.permission;
             if (permission === app.SupportedPermissions.DEVICE_PRECISE_LOCATION) {
                 let deviceCoordinates = app.getDeviceLocation().coordinates;
+                // object with latitude and longitude properties
                 console.log(deviceCoordinates);
                 app.tell(`<speak>Yay! I know where you are now!</speak>`);
             } else {
@@ -59,10 +106,12 @@ exports.handler = (event, context, callback) => {
         You can try asking me to find your representatives instead.`);
     }
 
+    queryCicero(61.19, -149.9);
+
     // build app object
     let response = new AssistantResponse();
-    let request = new AssistantRequest(event);
-    const app = new ApiAiApp({request, response});
+    let assistantRequest = new AssistantRequest(event);
+    const app = new ApiAiApp({assistantRequest, response});
 
     let hasScreen = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
     console.log('device has screen: ' + hasScreen);
