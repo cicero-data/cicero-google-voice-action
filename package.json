@@ -5,7 +5,8 @@
   "private": "true",
   "main": "index.js",
   "dependencies": {
-    "actions-on-google": "^1.2.0"
+    "actions-on-google": "^1.2.0",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "eslint": "^4.3.0",
