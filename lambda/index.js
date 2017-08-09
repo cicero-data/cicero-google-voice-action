@@ -106,6 +106,7 @@ exports.handler = (event, context, callback) => {
         You can try asking me to find your representatives instead.`);
     }
 
+    // TODO: remove this test function call
     queryCicero(61.19, -149.9);
 
     // build app object
