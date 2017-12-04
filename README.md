@@ -18,4 +18,4 @@ First, set up the constants file:
  - `cp lambda/constants.js.example lambda/constants.js`
  - Edit `lambda/constants.js` to set your Cicero API key
 
-To run the local server, use `./server.sh`. It will be available at http://localhost:3000.
+To run the local server, use `./scripts/server`. It will be available at http://localhost:3000.
