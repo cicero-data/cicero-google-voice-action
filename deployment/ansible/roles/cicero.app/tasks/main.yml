@@ -1,0 +1,33 @@
+---
+- name: Add Ansible user to Docker group
+  user: name=vagrant
+        groups=docker
+        append=yes
+  notify:
+    - Restart Docker
+
+- name: Configure npm path
+  command: npm config set prefix /usr/local
+
+- name: Install Serverless
+  npm:
+    name: serverless
+    global: yes
+
+- name: Symlink Serverless into /usr/local/bin
+  file: >
+    src=/usr/local/node-v{{ nodejs_version }}-{{ nodejs_os }}-{{ nodejs_arch }}/bin/{{ item }}
+    dest={{ nodejs_symlink_path }}/{{ item }}
+    state=link
+  with_items:
+    - serverless
+
+
+- name: Install node dependencies
+  npm:
+    path: "{{ root_src_dir }}"
+  become: no
+
+- name: Pull Serverless docker image
+  command: docker pull lambci/lambda
+  become: no
