@@ -1,0 +1,8 @@
+---
+nodejs_version: 8.9.1
+nodejs_npm_version: 5.5.1
+
+webhook_api_key: LAMBDA_X_API_KEY
+webhook_url: LAMBDA_WEBHOOK_URL
+
+cicero_api_key: CICERO_API_KEY

@@ -1,0 +1,53 @@
+{
+  "id": "a58f80f4-7c35-428d-8ab6-d5efd58fea33",
+  "name": "request.location",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "request_location_permission",
+      "affectedContexts": [
+        {
+          "name": "findRepresentatives",
+          "parameters": {},
+          "lifespan": 5
+        },
+        {
+          "name": "findrepresentatives-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "ac1670ff-c59e-4ad0-a37b-ccfb21d8d25a",
+          "dataType": "@representatives",
+          "name": "representatives",
+          "value": "$representatives",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Okay, let\u0027s find out who represents you.",
+            "Sure, let\u0027s see who your representatives are."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1501200754,
+  "fallbackIntent": false,
+  "events": []
+}

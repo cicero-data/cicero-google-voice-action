@@ -22,7 +22,6 @@
   with_items:
     - serverless
 
-
 - name: Install node dependencies
   npm:
     path: "{{ root_src_dir }}"
@@ -31,3 +30,9 @@
 - name: Pull Serverless docker image
   command: docker pull lambci/lambda
   become: no
+
+- name: Configure agent
+  template: src=agent.json.j2 dest={{ root_src_dir }}/dialogflow/agent.json
+
+- name: Configure webhook
+  template: src=constants.js.j2 dest={{ root_src_dir }}/lambda/constants.js
