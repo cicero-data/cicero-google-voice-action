@@ -11,6 +11,7 @@ Locally, it runs within a vagrant box.
 Dependencies:
  - Vagrant 1.9+
 
+Installation:
  - Set constants: `cp deployment/ansible/group_vars/all.example deployment/ansible/group_vars/all`
  - Edit the `all` group vars file copied in the last step to set API keys and webhook URL
  - Create the vagrant box: `vagrant up`
