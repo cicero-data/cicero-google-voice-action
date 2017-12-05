@@ -1,0 +1,39 @@
+{
+  "id": "83bbadf0-e651-4611-8c51-e9f7d43a6ed2",
+  "name": "find.representatives",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "find_representatives",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "d1d36567-166b-4299-ad92-ee69c26729f4",
+          "dataType": "@representatives",
+          "name": "representatives"
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Okay, now we know where to look. Let\u0027s see."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1501201762,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_PERMISSION"
+    }
+  ]
+}

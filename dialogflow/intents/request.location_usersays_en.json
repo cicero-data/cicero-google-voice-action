@@ -1,0 +1,60 @@
+[
+  {
+    "id": "cc7a187d-6548-4c10-8f5d-25047721b1fc",
+    "data": [
+      {
+        "text": "Find my ",
+        "userDefined": false
+      },
+      {
+        "text": "representatives",
+        "alias": "representatives",
+        "meta": "@representatives",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1501092310
+  },
+  {
+    "id": "96304f52-49c9-4dc5-aede-697aa866122c",
+    "data": [
+      {
+        "text": "Find ",
+        "userDefined": false
+      },
+      {
+        "text": "representatives",
+        "alias": "representatives",
+        "meta": "@representatives",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1501092310
+  },
+  {
+    "id": "2a354160-6ee9-4ce6-9a09-6fb252143262",
+    "data": [
+      {
+        "text": "Who are my ",
+        "userDefined": false
+      },
+      {
+        "text": "representatives",
+        "alias": "representatives",
+        "meta": "@representatives",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  }
+]
