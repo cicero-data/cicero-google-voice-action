@@ -49,10 +49,14 @@ provider:
 package:
   include:
     - lambda/**
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+  exclude:
+    - deployment/**
+    - dialogflow/**
+    - scripts/**
+    - Vagrantfile
+    - .*
+    - .vagrant/**
+    - lambda/constants.js.example
 
 functions:
   ciceroGoogleVoice:
