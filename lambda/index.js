@@ -1,4 +1,4 @@
-exports.handler = (event, context, callback) => {
+exports.handler = (event, context) => {
     'use strict';
 
     process.env.DEBUG = 'actions-on-google:*';
@@ -34,11 +34,11 @@ exports.handler = (event, context, callback) => {
         console.log('query Cicero...');
         var ciceroApiKey = CICERO_API_KEY;
         var url = ['https://staging.cicero.azavea.com/v3.1/official?lat=',
-                   lat,
-                   '&lon=',
-                   lon,
-                   '&key=',
-                   ciceroApiKey].join('');
+            lat,
+            '&lon=',
+            lon,
+            '&key=',
+            ciceroApiKey].join('');
 
         request(url, function(error, response, body) {
             if (error) {
@@ -88,14 +88,14 @@ exports.handler = (event, context, callback) => {
                 let deviceCoordinates = app.getDeviceLocation().coordinates;
                 // object with latitude and longitude properties
                 console.log(deviceCoordinates);
-                app.tell(`<speak>Yay! I know where you are now!</speak>`);
+                app.tell('<speak>Yay! I know where you are now!</speak>');
             } else {
                 console.error(permission);
-                app.tell(`<speak>Oops! I broke. I don't know what that permission is.</speak>`);
+                app.tell('<speak>Oops! I broke. I don\'t know what that permission is.</speak>');
             }
         } else {
-            app.tell(`<speak>I can't find your representatives unless I know where to look. \
-                     If you are willing to grant permission later, please ask again.</speak>`);
+            app.tell('<speak>I can\'t find your representatives unless I know where to look. \
+                     If you are willing to grant permission later, please ask again.</speak>');
         }
     }
 
