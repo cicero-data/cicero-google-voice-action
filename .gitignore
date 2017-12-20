@@ -9,3 +9,5 @@ lambda/constants.js
 
 .vagrant/
 
+# using npm package lock
+yarn.lock
