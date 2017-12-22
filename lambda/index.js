@@ -1,4 +1,4 @@
-exports.handler = (event, context) => {
+exports.handler = (event, context, callback) => {
     'use strict';
 
     process.env.DEBUG = 'actions-on-google:*';
@@ -88,14 +88,14 @@ exports.handler = (event, context) => {
                 let deviceCoordinates = app.getDeviceLocation().coordinates;
                 // object with latitude and longitude properties
                 console.log(deviceCoordinates);
-                app.tell('<speak>Yay! I know where you are now!</speak>');
+                app.tell(`<speak>Yay! I know where you are now!</speak>`);
             } else {
                 console.error(permission);
-                app.tell('<speak>Oops! I broke. I don\'t know what that permission is.</speak>');
+                app.tell(`<speak>Oops! I broke. I don't know what that permission is.</speak>`);
             }
         } else {
-            app.tell('<speak>I can\'t find your representatives unless I know where to look. \
-                     If you are willing to grant permission later, please ask again.</speak>');
+            app.tell(`<speak>I can\'t find your representatives unless I know where to look. \
+                     If you are willing to grant permission later, please ask again.</speak>`);
         }
     }
 
@@ -107,14 +107,19 @@ exports.handler = (event, context) => {
     }
 
     // TODO: remove this test function call
-    queryCicero(61.19, -149.9);
+    // queryCicero(61.19, -149.9);
 
     // build app object
     let response = new AssistantResponse();
     let assistantRequest = new AssistantRequest(event);
-    const app = new ApiAiApp({assistantRequest, response});
+    const app = new ApiAiApp({request: assistantRequest, response: response});
 
-    let hasScreen = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
+    let hasScreen = false;
+    // FIXME: what happened to this property?
+    if (app.SurfaceCapabilities) {
+        console.log('have surface capabilities property');
+        hasScreen = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
+    }
     console.log('device has screen: ' + hasScreen);
 
     // map actions to their handler functions
