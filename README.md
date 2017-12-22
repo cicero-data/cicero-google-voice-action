@@ -19,3 +19,14 @@ Installation:
  - Start the local server running with `./scripts/server`
 
 It will be available at http://localhost:3000.
+
+Deployment:
+ - `vagrant ssh`
+ - Set AWS environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+ - `sls deploy` to deploy the Lambda function
+ - Note the API key `ciceroGoogleVoice` in the output
+ - Note the POST endpoint in the output
+ - Edit `deployment/ansible/group_vars/all` to set the webhook endpoint and API key to the above
+ - Exit the VM and `vagrant provision` to update the Dialogflow configuration for the above
+ - Zip the contents of the `dialogflow` directory and upload to Dialogflow, or alternatively:
+ - Update the fulfillment URL and `x-api-key` header in Dialogflow directly, if only webhook changed

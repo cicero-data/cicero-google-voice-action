@@ -34,11 +34,11 @@ exports.handler = (event, context, callback) => {
         console.log('query Cicero...');
         var ciceroApiKey = CICERO_API_KEY;
         var url = ['https://staging.cicero.azavea.com/v3.1/official?lat=',
-                   lat,
-                   '&lon=',
-                   lon,
-                   '&key=',
-                   ciceroApiKey].join('');
+            lat,
+            '&lon=',
+            lon,
+            '&key=',
+            ciceroApiKey].join('');
 
         request(url, function(error, response, body) {
             if (error) {
@@ -94,7 +94,7 @@ exports.handler = (event, context, callback) => {
                 app.tell(`<speak>Oops! I broke. I don't know what that permission is.</speak>`);
             }
         } else {
-            app.tell(`<speak>I can't find your representatives unless I know where to look. \
+            app.tell(`<speak>I can\'t find your representatives unless I know where to look. \
                      If you are willing to grant permission later, please ask again.</speak>`);
         }
     }
@@ -107,14 +107,19 @@ exports.handler = (event, context, callback) => {
     }
 
     // TODO: remove this test function call
-    queryCicero(61.19, -149.9);
+    // queryCicero(61.19, -149.9);
 
     // build app object
     let response = new AssistantResponse();
     let assistantRequest = new AssistantRequest(event);
-    const app = new ApiAiApp({assistantRequest, response});
+    const app = new ApiAiApp({request: assistantRequest, response: response});
 
-    let hasScreen = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
+    let hasScreen = false;
+    // FIXME: what happened to this property?
+    if (app.SurfaceCapabilities) {
+        console.log('have surface capabilities property');
+        hasScreen = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
+    }
     console.log('device has screen: ' + hasScreen);
 
     // map actions to their handler functions

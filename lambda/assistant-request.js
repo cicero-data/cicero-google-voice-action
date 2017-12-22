@@ -7,7 +7,7 @@ function AssistantRequest(lambda_event) {
     this.body = JSON.parse(lambda_event.body);
 }
 
-AssistantRequest.prototype.get = function get(field) {
+AssistantRequest.prototype.get = function get(value) {
     'use strict';
     return null;
 };

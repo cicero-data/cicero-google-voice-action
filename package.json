@@ -5,19 +5,19 @@
   "private": "true",
   "main": "index.js",
   "dependencies": {
-    "actions-on-google": "^1.2.0",
+    "actions-on-google": "1.2.0",
     "jquery": "^3.2.1",
-    "request": "^2.81.0"
+    "request": "~2.81.0"
   },
   "devDependencies": {
-    "eslint": "^4.3.0",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
+    "eslint": "^4.13.1",
+    "eslint-config-semistandard": "^12.0.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "serverless-offline": "^3.15.3"
+    "serverless-offline": "^3.16.0"
   },
   "scripts": {
     "lint": "eslint --fix \"**/*.js\"",
